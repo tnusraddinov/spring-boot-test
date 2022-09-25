@@ -6,6 +6,7 @@ pipeline{
         stage('build'){
             steps {
                 echo 'build ....'
+                sh 'pwd'
                 sh 'ls -lah'
             }
         }
