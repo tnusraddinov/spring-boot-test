@@ -8,14 +8,14 @@ pipeline{
                 echo 'build ....'
                 sh 'pwd'
                 sh 'ls -lah'
-                sh "./mvnw clean install -DskipTests"
+                sh "mvn clean install -DskipTests"
             }
         }
 
         stage('Test'){
             steps {
                 echo 'test ....'
-                sh "./mvnw test -Punit"
+                sh "mvn test -Punit"
             }
         }
 
@@ -25,7 +25,7 @@ pipeline{
 
                 sh "pid=\$(lsof -i:8989 -t); kill -TERM \$pid || kill -KILL \$pid"
                 withEnv(['JENKINS_NODE_COOKIE=dontkill', 'myenv=hello from server']) {
-                    sh 'nohup ./mvnw spring-boot:run -Dserver.port=8989 &'
+                    sh 'nohup mvn spring-boot:run -Dserver.port=8989 &'
                 }
             }
         }
