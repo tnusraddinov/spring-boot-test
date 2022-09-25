@@ -15,12 +15,7 @@ pipeline{
         stage('Test'){
             steps {
                 echo 'test ....'
-                try {
-                    sh "./mvnw test -Punit"
-                } catch(err) {
-                    echo "${err}"
-                    throw err
-                }
+                sh "./mvnw test -Punit"
             }
         }
 
